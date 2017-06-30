@@ -3,7 +3,7 @@
 set :application, "peak-shaving"
 set :repo_url, "git@github.com:andy-luo-siemens/peak-shaving.git"
 set :user, 'ubuntu'
-set :rbenv_ruby, '2.3.1'
+set :rbenv_ruby, '2.4.1'
 set :branch, :development
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
