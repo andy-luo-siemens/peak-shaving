@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ip_address: 
+  name: MyString
+  evse_gateway: one
+
+two:
+  ip_address: 
+  name: MyString
+  evse_gateway: two

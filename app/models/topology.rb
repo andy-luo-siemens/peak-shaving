@@ -1,0 +1,2 @@
+class Topology < ApplicationRecord
+end
