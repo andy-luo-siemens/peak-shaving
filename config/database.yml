@@ -21,7 +21,7 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: peakshaving
-  password: <%= ENV['PEAK-SHAVING_DATABASE_PASSWORD'] %>
+  password: <%= ENV['PEAK_SHAVING_DATABASE_PASSWORD'] %>
   host: siemens-peak-shaving.czmymd6zftaq.us-east-1.rds.amazonaws.com
   port: 5432
 
