@@ -1,4 +1,4 @@
 class Meter < ApplicationRecord
-  belong_to :sem3_controller
+  belongs_to :sem3_controller
 
 end
