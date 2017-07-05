@@ -1,7 +1,4 @@
 {
-  "scripts": {
-    "postinstall": "cd client && yarn install"
-  },
   "name": "peak-shaving",
   "private": true,
   "dependencies": {}
