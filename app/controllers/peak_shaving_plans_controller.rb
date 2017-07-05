@@ -1,0 +1,2 @@
+class PeakShavingPlansController < ApplicationController
+end

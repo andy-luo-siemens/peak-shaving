@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  mac_address: 
+  mac_address:
   name: MyString
-  peak_shaving_plan: one
+  topology: one
 
 two:
-  mac_address: 
+  mac_address:
   name: MyString
-  peak_shaving_plan: two
+  topology: two

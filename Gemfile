@@ -21,8 +21,11 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
+
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
 # Use React.js for views
-gem 'react-rails', '~>1.0'
+gem 'react_on_rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -33,6 +36,9 @@ gem 'redis-namespace'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem "factory_girl_rails", "~> 4.0"
+gem "faker"
+
 
 
 group :development, :test do
@@ -41,6 +47,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'minitest-reporters'
 end
 
 group :development do

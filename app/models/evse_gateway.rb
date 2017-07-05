@@ -1,4 +1,4 @@
 class EvseGateway < ApplicationRecord
-  belongs_to :peak_shaving_plan
+  belongs_to :topology
   has_many :evses
 end
