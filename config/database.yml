@@ -22,12 +22,12 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: peakshaving
   password: <%= ENV['PEAK_SHAVING_DATABASE_PASSWORD'] %>
-  host: siemens-peak-shaving.czmymd6zftaq.us-east-1.rds.amazonaws.com
   port: 5432
 
 development:
   <<: *default
   database: development
+  host: localhost
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -62,6 +62,7 @@ development:
 test:
   <<: *default
   database: test
+  host: localhost
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -85,3 +86,4 @@ test:
 production:
   <<: *default
   database: production
+  host: siemens-peak-shaving.czmymd6zftaq.us-east-1.rds.amazonaws.com

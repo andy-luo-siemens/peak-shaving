@@ -1,4 +1,5 @@
 # Siemens Metered Automatic Peak Shaving (MAPS) Backend
+## [34.230.153.145](http://34.230.153.145)
 
 This backend aims to provide a cloud-based peak shaving solution for Siemens meters and EVSEs.
 Facilitating communications with the respective gateways, this backend aggregates
@@ -14,12 +15,25 @@ Technology Stack:
 
 * Performs stream processing using Redis
 
-* Front-end uses React and Bootstrap
+* Front-end design using React and Bootstrap
+
+## Cloud Architecture
+This system is hosted in AWS for staging (not yet implemented) and production.
+The Ruby on Rails application runs in an EC2 instance and connects to a PostgreSQL database in an RDS instance.
+The same EC2 instance also runs the Redis server.
+An Nginx web server integrated with a Phusion Passenger application server is used to serve the Rails application. The gateways communicate with this cloud using the PubNub publisher/subscriber service as well as through the public endpoint.
+Visit it at [34.230.153.145](http://34.230.153.145).
+
 
 ## Setting up development environment
+
 If you prefer to use a shell other than BASH, such as ZSH or SH, ensure your configurations go to the correct files (~/.bashrc vs. ~/.zshrc)
 
 ### Operating system
+
+The production environment uses Ubuntu 16.04 LTS so we aim to use this operating system for development as well.
+Preferably the OS is installed natively in the development computers although VMs will do just fine.
+The rest of the guide assumes you are using Ubuntu 16.04 LTS however 14.04 LTS would most likely also work.
 
 ### Install rails through rbenv
 
@@ -81,7 +95,39 @@ Use [rbenv](https://github.com/rbenv/rbenv), a command line tool for managing Ru
   $ rbenv install 2.4.1
   $ rbenv global 2.4.1
   ```
-  You can double check you can double check your Ruby version at any time with `$ ruby -v`
+  You can double check your Ruby version at any time with `$ ruby -v`
+
+### Install Node.js through NVM
+Ruby on Rails requires a Javascript run-time so install the most recent version of node:
+  1. Install dependies required by NVM:
+  ```bash
+  $ sudo apt-get install build-essential libssl-dev
+  ```
+  2. Download the installation script:
+  ```bash
+  $ cd
+  $ curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh -o install_nvm.sh
+  ```
+  3. Run the script with BASH or the shell of your choice:
+  ```bash
+  $ bash install_nvm.sh
+  ```
+  4. Log out and log back in again or source your shell file:
+  ```bash
+  $ source ~/.profile
+  ```
+  *You are now ready to install node*
+  5. At the time of writing, this application uses v8.1.3, although the most recent version should still work in the future:
+  ```bash
+  $ nvm install 8.1.3
+  ```
+  To install the newest available version:
+  ```bash
+  $ nvm install node
+  ```
+  NVM automatically uses the most recently installed version. Double check the currently used version with `$ node -v`
+
+### Install Development PostgreSQL database
 
 ### Install Redis server
 Since this application requires redis for stream processing of meter data, install it:
@@ -217,4 +263,8 @@ Since this application requires redis for stream processing of meter data, insta
   $ sudo systemctl enable redis
   ```
   You can test Redis functionality at any time with the command line interface `$ redis-cli`
+
+## Cloning Repository and Starting development
+
+## Setting environment variables
 ## Deployment
