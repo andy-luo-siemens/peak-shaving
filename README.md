@@ -128,6 +128,19 @@ Ruby on Rails requires a Javascript run-time so install the most recent version 
   NVM automatically uses the most recently installed version. Double check the currently used version with `$ node -v`
 
 ### Install Development PostgreSQL database
+Ruby on Rails uses a different database for each environment. While the production database resides in the RDS instance in AWS, the development and test databases reside locally on your machine. The application uses PostgreSQL 9 so install it:
+
+  1. Check for security updates and install:
+  ```bash
+  $ sudo apt-get update
+  $ sudo apt-get install postgresql postgresql-contrib
+  ```
+  2. Enter `psql` as the postgres user and create a role for the application:
+  ```bash
+  $ sudo -u postgres psql
+  > create role peakshaving with createdb login password 'PG_PASSWORD_LOCAL'
+  ```
+  where `PG_PASSWORD_LOCAL` represents the password that you pick and remember for further configuration once the peak shaving repository has been cloned
 
 ### Install Redis server
 Since this application requires redis for stream processing of meter data, install it:
@@ -264,7 +277,7 @@ Since this application requires redis for stream processing of meter data, insta
   ```
   You can test Redis functionality at any time with the command line interface `$ redis-cli`
 
-## Cloning Repository and Starting development
+## Cloning Repository and Starting Development
 
-## Setting environment variables
+## Setting Environment Variables
 ## Deployment
