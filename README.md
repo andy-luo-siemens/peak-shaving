@@ -97,6 +97,11 @@ Use [rbenv](https://github.com/rbenv/rbenv), a command line tool for managing Ru
   ```
   You can double check your Ruby version at any time with `$ ruby -v`
 
+  9. Since bundler will be used to manage other gems, install it now:
+  ```bash
+  $ gem install bundler
+  ```
+
 ### Install Node.js through NVM
 Ruby on Rails requires a Javascript run-time so install the most recent version of node:
   1. Install dependies required by NVM:
@@ -140,7 +145,7 @@ Ruby on Rails uses a different database for each environment. While the producti
   $ sudo -u postgres psql
   > create role peakshaving with createdb login password 'PG_PASSWORD_LOCAL'
   ```
-  where `PG_PASSWORD_LOCAL` represents the password that you pick and remember for further configuration once the peak shaving repository has been cloned
+  where `PG_PASSWORD_LOCAL` represents the password that you pick and remember for [further configuration](https://github.com/andy-luo-siemens/peak-shaving#setting-environment-variables) once the peak shaving repository has been cloned.
 
 ### Install Redis server
 Since this application requires redis for stream processing of meter data, install it:
@@ -277,7 +282,76 @@ Since this application requires redis for stream processing of meter data, insta
   ```
   You can test Redis functionality at any time with the command line interface `$ redis-cli`
 
-## Cloning Repository and Starting Development
+## Installing Local Development Server
+Since the production environment uses Phusion Passenger to run the application, it would be beneficial to use the same server for development.
+The production environment uses a version of Passenger with Nginx integration however the local development server can use the standalone version of Passenger.
 
-## Setting Environment Variables
+  1. Give APT https support:
+  ```bash
+  $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
+  $ sudo apt-get install -y apt-transport-https ca-certificates
+  ```
+  2. Add the APT repository:
+  ```bash
+  $ sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger xenial main > /etc/apt/sources.list.d/passenger.list'
+  $ sudo apt-get update
+  ```
+  3. Install Passenger through APT:
+  ```bash
+  $ sudo apt-get install passenger
+  ```
+  4. Check that the installation succeeded by running:
+  ```bash
+  $ sudo /usr/bin/passenger-config validate-install
+  ```
+
+## Setting Environment/Shell Variables
+Instead of storing passwords in the code base, the Rails application reads them from the environment through environment variables.
+Set the following variable values in the configuration files of the shell that you will use to run this application:
+
+  1. Set the `PEAK_SHVAING_DATABASE_PASSWORD` variable:
+  ```bash
+  $ sudo echo 'export PEAK_SHAVING_DATABASE_PASSWORD=PG_PASSWORD_LOCAL' > ~/.bashrc
+  ```
+  where `PG_PASSWORD_LOCAL` is the password you created for the role assigned to the development database (when you configured PostgreSQL).
+
+
+## Cloning Repository and Starting Development
+The main branch used for development is `development` so clone the repository:
+  ```bash
+  $ cd
+  $ git clone https://github.com/andy-luo-siemens/peak-shaving.git
+  $ cd peak-shaving
+  ```
+  1. Install all of the gems used:
+  ```bash
+  $ bundle install
+  ```
+  2. Create the local test and development databases and run migrations on them:
+  ```bash
+  $ rake db:setup
+  ```
+  3. Run the test suite and ensure all tests are passing:
+  ```bash
+  $ rails test
+  ```
+  4. Spin up the local development server:
+  ```bash
+  $ passenger start
+  ```
+  See it live at [localhost](localhost:3000). *You are now ready to develop*
+
 ## Deployment
+Currently, [Capistrano](https://github.com/capistrano/capistrano/blob/master/README.md) is used to deploy to the production environment in AWS.
+There are plans to also use [Chef](https://www.chef.io/chef/) in the future to manage and configure the production environment.
+Deployment with Capistrano is as simple as committing your code, merging the development branch into the master branch, pushing to Github, and running:
+  ```bash
+  $ cap production deploy
+  ```
+  Capistrano uses SSH to connect to the server (non-interactive, non-login) and:
+  1. Pull the new changes from the master branch.
+  2. Modify symbolic links to the current release directory.
+  3. Run `bundle install`.
+  4. Precompile assets.
+  5. Run migrations on the production database.
+  6. Restart Passenger.
