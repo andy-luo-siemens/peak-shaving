@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do
     resources :peak_shaving_plans do
@@ -15,6 +16,10 @@ Rails.application.routes.draw do
   end
 
 
-  root 'application#hello'
+  root 'static_pages#home'
+  get    '/login',   to: 'sessions#new'
+  post   '/login',   to: 'sessions#create'
+  delete '/logout',  to: 'sessions#destroy'
+
 
 end

@@ -23,7 +23,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
-gem 'jquery-turbolinks'  
+gem 'jquery-turbolinks'
 gem 'autoprefixer-rails'
 # Use React.js for views
 gem 'react-rails'
@@ -35,7 +35,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'redis', '~> 3.0'
 gem 'redis-namespace'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 gem "factory_girl_rails", "~> 4.0"
 gem "faker"

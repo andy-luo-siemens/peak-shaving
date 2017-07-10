@@ -1,0 +1,18 @@
+<%= content_for :home_body do %>
+
+  <%= react_component('HelloMessage', name:'Home Page Body') %>
+  <div class="center jumbotron">
+  <h1>Metered Automated Peak Shaving (MAPS)</h1>
+
+  <h2>
+    An online platform for managing your peak shaving plans.
+    This is a service provided by Siemens Energy Management (EM)
+  </h2>
+
+  <%= link_to "Sign up now!", "#{new_user_path}", class: "btn btn-lg btn-primary" %>
+  <%= link_to "Login", "#{login_path}", class: "btn btn-lg btn-primary" %>
+</div>
+
+<% end %>
+
+<% render template: "layouts/home" %>

@@ -1,0 +1,9 @@
+<%= content_for :content do %>
+
+  <%= react_component('HelloMessage', name: 'Home Layout') %>
+  <%= content_for?(:home_body) ? yield(:home_body) : yield %>
+
+
+<% end %>
+
+<%= render template: "layouts/application" %>

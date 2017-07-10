@@ -1,0 +1,6 @@
+<% content_for :dashboard_body do %>
+  <%= react_component('HelloMessage', name: 'PeakShavingPlans index') %>
+  <%= react_component('HelloMessage', name: "#{@user.name}") %>
+<% end %>
+
+<%= render template: "layouts/dashboard" %>

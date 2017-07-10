@@ -1,0 +1,49 @@
+<% content_for :content do %>
+  <%= react_component('HelloMessage', name: 'Dashboard layout') %>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2 sidebar">
+        <div class="nav-side-menu">
+          <div class="brand">Siemens/MAPS header</div>
+            <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+          <div class="menu-list">
+              <ul id="menu-content" class="menu-content">
+                  <li class="active">
+                    <a href="#">
+                    <i class="fa fa-dashboard fa-lg"></i> My Peak Shaving Plans
+                    </a>
+                  </li>
+
+                  <li  data-toggle="collapse" data-target="#products" class="collapsed">
+                    <a href="#"><i class="fa fa-gift fa-lg"></i> Topologies <span class="arrow"></span></a>
+                  </li>
+
+                  <li data-toggle="collapse" data-target="#service" class="collapsed">
+                    <a href="#"><i class="fa fa-globe fa-lg"></i> Devices <span class="arrow"></span></a>
+                  </li>
+                  <!-- <ul class="sub-menu collapse" id="service">
+                    <li>New Service 1</li>
+                    <li>New Service 2</li>
+                    <li>New Service 3</li>
+                  </ul> -->
+
+
+
+
+              </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-7 main-content">
+        <%= content_for?(:dashboard_body) ? yield(:dashboard_body) : yield %>
+      </div>
+      <div class="col-sm-3 notifications">
+        <%= react_component('HelloMessage', name: 'Notifications Pane') %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+
+<%= render template: "layouts/application" %>
