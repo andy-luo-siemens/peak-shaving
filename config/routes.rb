@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   end
 
 
+  post 'authenticate', to: 'authentication#authenticate'
   root 'static_pages#home'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'

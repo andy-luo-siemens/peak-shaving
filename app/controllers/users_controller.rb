@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
+  skip_before_action :authorize_request, only: [:new, :create]
 
   # GET ../users this endpoint not available to public
   def index
