@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170729192228) do
+ActiveRecord::Schema.define(version: 20170729215838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,12 +60,12 @@ ActiveRecord::Schema.define(version: 20170729192228) do
   end
 
   create_table "sem3_controllers", force: :cascade do |t|
-    t.inet "ip_address"
     t.string "name"
     t.bigint "sem3_gateway_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.integer "address"
     t.index ["sem3_gateway_id"], name: "index_sem3_controllers_on_sem3_gateway_id"
     t.index ["user_id"], name: "index_sem3_controllers_on_user_id"
   end
