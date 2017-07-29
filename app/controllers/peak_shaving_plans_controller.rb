@@ -1,5 +1,6 @@
 class PeakShavingPlansController < ApplicationController
   before_action :set_user, only: [:index]
+  skip_before_action :authorize_request
 
   def index
 

@@ -5,9 +5,10 @@ Rails.application.routes.draw do
     resources :peak_shaving_plans do
       resources :topologies
     end
+    resources :meters, shallow: true
     resources :sem3_gateways do
       resources :sem3_controllers, shallow: true do
-        resources :meters, shallow: true
+
       end
     end
     resources :evse_gateways do

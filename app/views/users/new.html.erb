@@ -1,28 +1,29 @@
 <%= content_for :home_body do %>
 
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <h1>Sign up</h1>
+        <%= form_for(@user) do |f| %>
+          <%= render 'shared/error_messages' %>
+          <%= f.label :name %>
+          <%= f.text_field :name %>
 
-  <div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-      <h1>Sign up</h1>
-      <%= form_for(@user) do |f| %>
-        <%= render 'shared/error_messages' %>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
+          <%= f.label :email %>
+          <%= f.email_field :email %>
 
-        <%= f.label :email %>
-        <%= f.email_field :email %>
+          <%= f.label :password %>
+          <%= f.password_field :password %>
 
-        <%= f.label :password %>
-        <%= f.password_field :password %>
+          <%= f.label :password_confirmation, "Confirmation" %>
+          <%= f.password_field :password_confirmation %>
 
-        <%= f.label :password_confirmation, "Confirmation" %>
-        <%= f.password_field :password_confirmation %>
-
-        <%= f.submit "Create my account", class: "btn btn-primary" %>
-      <% end %>
+          <%= f.submit "Create my account", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <div class="col-md-4"></div>
     </div>
-    <div class="col-md-4"></div>
   </div>
 
 
