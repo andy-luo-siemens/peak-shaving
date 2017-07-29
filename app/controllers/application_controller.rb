@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Response
   protect_from_forgery
   include SessionsHelper
   before_action :authorize_request, except: :hello
