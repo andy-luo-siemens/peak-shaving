@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170730173517) do
+ActiveRecord::Schema.define(version: 20170730203600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 20170730173517) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "warning_threshold"
+    t.float "cutoff_threshold"
     t.index ["user_id"], name: "index_peak_shaving_plans_on_user_id"
   end
 
