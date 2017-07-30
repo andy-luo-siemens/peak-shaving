@@ -6,12 +6,12 @@ Facilitating communications with the respective gateways, this backend aggregate
 data from the EVSE chargers and SEM3 meters and performs real-time logic to avoid overconsumption
 at peak hours. Clients can register, configure, and monitor peak shaving plans from a web interface.
 Meters and chargers are registered using their respective gateways. The gateways also host redundant
-logic to ensure that peak shaving occurs even if connectionin to this backend is dropped.
+logic to ensure that peak shaving occurs even if connection to this backend is dropped.
 
 Technology Stack:
 * Utilizes Rails 5 and PostgreSQL
 
-* Uses publisher/subscriber service provided by PubNub to enable real time communications with devices
+* Uses publisher/subscriber service provided by MQTT to enable real time communications with devices
 
 * Performs stream processing using Redis
 
@@ -21,7 +21,7 @@ Technology Stack:
 This system is hosted in AWS for staging (not yet implemented) and production.
 The Ruby on Rails application runs in an EC2 instance and connects to a PostgreSQL database in an RDS instance.
 The same EC2 instance also runs the Redis server.
-An Nginx web server integrated with a Phusion Passenger application server is used to serve the Rails application. The gateways communicate with this cloud using the PubNub publisher/subscriber service as well as through the public endpoint.
+An Nginx web server integrated with a Phusion Passenger application server is used to serve the Rails application. The gateways communicate with this cloud using the MQTT publisher/subscriber service as well as through the public endpoint.
 Visit it at [34.230.153.145](http://34.230.153.145).
 
 
@@ -309,7 +309,7 @@ The production environment uses a version of Passenger with Nginx integration ho
 Instead of storing passwords in the code base, the Rails application reads them from the environment through environment variables.
 Set the following variable values in the configuration files of the shell that you will use to run this application:
 
-  1. Set the `PEAK_SHVAING_DATABASE_PASSWORD` variable:
+  1. Set the `PEAK_SHAVING_DATABASE_PASSWORD` variable:
   ```bash
   $ sudo echo 'export PEAK_SHAVING_DATABASE_PASSWORD=PG_PASSWORD_LOCAL' > ~/.bashrc
   ```

@@ -1,0 +1,6 @@
+<%= content_for :devices_body do %>
+  <%= react_component('HelloMessage', name: 'SEM3 Gateway index') %>
+  <%= react_component('SEM3 Gateways', data: @sem3_gateways) %>
+<% end %>
+
+<%= render template: "layouts/devices" %>

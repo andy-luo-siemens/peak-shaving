@@ -6,7 +6,9 @@ class Sem3GatewaysController < ApplicationController
   end
   # POST ../users/:user_id/sem3_gateways
   def create
-    @sem3_gateway = Sem3Gateway.new(create_params.merge(user_id: @api_user.id))
+    @sem3_gateway = Sem3Gateway.new(create_params.merge(
+      user_id: @api_user.id
+    ))
     @sem3_gateway.save!
     json_response(@sem3_gateway, :created)
   end
