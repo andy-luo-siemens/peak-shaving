@@ -134,6 +134,7 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
+    mqtt (0.5.0)
     multi_json (1.12.1)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -256,6 +257,7 @@ DEPENDENCIES
   jwt
   listen (>= 3.0.5, < 3.2)
   minitest-reporters
+  mqtt
   pg (~> 0.18)
   puma (~> 3.7)
   rails (~> 5.1.2)

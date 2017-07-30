@@ -1,28 +1,33 @@
+
 class Meters extends React.Component {
-  getInitialState() {
-    return { meters: this.props.data};
+
+  constructor(props) {
+    super(props)
+    this.state = {meters: props.data}
   }
 
-  getDefaultProps() {
-    return {meters: []};
-  }
 
   render() {
     return(
-      <div>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Controller</th>
-            <th>Active?</th>
-            <th>Plan</th>
-          </tr>
-        </thead>
+      <div className='container'>
+        <h1>Hello Meters Table!</h1>
         <table className='table table-bordered'>
-          {this.state.records.map(function(meter) {
-            return <Meter key={meter.id} meter={meter}/>
-          }.bind(this))}
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Controller</th>
+              <th>Active?</th>
+              <th>Plan</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.meters.map(function(meter) {
+              return(
+                <Meter key={meter.id} meter={meter}/>
+              )
+            }.bind(this))}
+            </tbody>
         </table>
       </div>
     );
