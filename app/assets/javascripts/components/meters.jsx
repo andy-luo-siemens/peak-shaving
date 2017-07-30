@@ -1,6 +1,5 @@
 
 class Meters extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {meters: props.data}
