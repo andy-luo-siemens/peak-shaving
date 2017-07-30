@@ -1,0 +1,22 @@
+<% content_for :dashboard_body do %>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Devices</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Meters</a></li>
+        <li><a href="#">SEM3 Controllers</a></li>
+        <li><a href="#">SEM3 Gateways</a></li>
+        <li><a href="#">EVSEs</a></li>
+        <li><a href="#">EVSE Gateways</a></li>
+      </ul>
+    </div>
+  </nav>
+  <%= react_component('HelloMessage', name: 'Devices layout') %>
+
+  <%= content_for?(:devices_body) ? yield(:devices_body) : yield %>
+
+
+<% end %>
+<%= render template: "layouts/dashboard" %>

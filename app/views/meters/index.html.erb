@@ -1,6 +1,6 @@
-<% content_for :dashboard_body do %>
+<% content_for :devices_body do %>
   <%= react_component('HelloMessage', name: 'Meters index') %>
   <%= react_component('Meters', data: @meters) %>
 <% end %>
 
-<%= render template: "layouts/dashboard" %>
+<%= render template: "layouts/devices" %>

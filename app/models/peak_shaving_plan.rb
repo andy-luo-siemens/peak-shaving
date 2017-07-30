@@ -1,4 +1,5 @@
 class PeakShavingPlan < ApplicationRecord
   belongs_to :user
-  has_one :topology
+  has_many :meters
+  has_many :evses
 end

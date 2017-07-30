@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170729215838) do
+ActiveRecord::Schema.define(version: 20170730173517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,9 +20,7 @@ ActiveRecord::Schema.define(version: 20170729215838) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "topology_id"
     t.bigint "user_id"
-    t.index ["topology_id"], name: "index_evse_gateways_on_topology_id"
     t.index ["user_id"], name: "index_evse_gateways_on_user_id"
   end
 
@@ -45,6 +43,8 @@ ActiveRecord::Schema.define(version: 20170729215838) do
     t.datetime "updated_at", null: false
     t.bigint "sem3_controller_id"
     t.bigint "user_id"
+    t.bigint "peak_shaving_plans_id"
+    t.index ["peak_shaving_plans_id"], name: "index_meters_on_peak_shaving_plans_id"
     t.index ["sem3_controller_id"], name: "index_meters_on_sem3_controller_id"
     t.index ["user_id"], name: "index_meters_on_user_id"
   end
@@ -52,10 +52,8 @@ ActiveRecord::Schema.define(version: 20170729215838) do
   create_table "peak_shaving_plans", force: :cascade do |t|
     t.string "name"
     t.bigint "user_id"
-    t.bigint "topology_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["topology_id"], name: "index_peak_shaving_plans_on_topology_id"
     t.index ["user_id"], name: "index_peak_shaving_plans_on_user_id"
   end
 
@@ -75,20 +73,8 @@ ActiveRecord::Schema.define(version: 20170729215838) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "topology_id"
     t.bigint "user_id"
-    t.index ["topology_id"], name: "index_sem3_gateways_on_topology_id"
     t.index ["user_id"], name: "index_sem3_gateways_on_user_id"
-  end
-
-  create_table "topologies", force: :cascade do |t|
-    t.string "name"
-    t.float "limit_threshold_kilowatt"
-    t.float "warning_threshold_kilowatt"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_topologies_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -99,12 +85,9 @@ ActiveRecord::Schema.define(version: 20170729215838) do
     t.string "password_digest"
   end
 
-  add_foreign_key "evse_gateways", "topologies"
   add_foreign_key "evses", "evse_gateways"
   add_foreign_key "meters", "sem3_controllers"
-  add_foreign_key "peak_shaving_plans", "topologies"
   add_foreign_key "peak_shaving_plans", "users"
   add_foreign_key "sem3_controllers", "sem3_gateways"
   add_foreign_key "sem3_controllers", "users"
-  add_foreign_key "sem3_gateways", "topologies"
 end
